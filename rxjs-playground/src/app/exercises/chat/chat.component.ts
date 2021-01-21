@@ -36,7 +36,7 @@ export class ChatComponent implements OnInit {
 
     /**************!!**************/
 
-     EMPTY.subscribe({                                   
+     merge(this.msg.julia$, this.msg.john$, this.msg.georg$).subscribe({
       next: e => this.log(e),
       error: err => this.log('❌ ERROR: ' + err),
       complete: () => this.log('✅ All members left')

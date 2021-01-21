@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable, of, from, timer, interval, ReplaySubject } from 'rxjs';
+import { Observable, of, from, throwError, timer, interval, ReplaySubject } from 'rxjs';
 import { map, filter } from 'rxjs/operators';
 
 @Component({
@@ -20,10 +20,39 @@ export class CreatingComponent implements OnInit {
      * Zum Abonnieren kannst du einen (partiellen) Observer oder ein einzelnes next-Callback verwenden.
      * Du kannst die Methode this.log() verwenden, um eine Ausgabe in der schwarzen Box im Browser zu erzeugen.
      */
+ /**
+     of(1, 2 , 3, 4, 5).subscribe({
+       next: e => this.log(e),
+       error: e => this.log(e),
+       complete: () => this.log("COMPLETE")
+     });
+
+     from('[4, 5, 6]').subscribe({
+      next: e => this.log(e),
+      error: e => this.log(e),
+      complete: () => this.log("COMPLETE")
+     });
+
+
+     throwError('err').subscribe({
+      next: e => this.log(e),
+      error: e => this.log(e),
+      complete: () => this.log("COMPLETE")
+     });
+*/
+
+     timer(0, 500).pipe(
+       map(e => e * 3),
+       filter(e => e % 2 === 0),
+     ).subscribe({
+      next: e => this.log(e),
+      error: e => this.log('ERROR' + e),
+      complete: () => this.log("COMPLETE")
+     });
 
     /******************************/
 
-    
+
     /******************************/
   }
 

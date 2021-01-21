@@ -19,10 +19,17 @@ export class FromeventComponent implements OnInit {
      * Initialisiere das Observable mit der aktuellen Fensterbreite (window.innerWidth)
      * Entprelle den Eventstrom, damit nicht zu viele Events gefeuert werden
      */
+    const width$ = fromEvent(window, 'resize').pipe(
+      debounceTime(500),
+      startWith(window.innerWidth),
+      map(() => window.innerWidth),
+      );
+
+      width$.subscribe(width => this.currentWidth = width);
 
     /******************************/
 
-    
+
     /******************************/
   }
 
